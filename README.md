@@ -2,7 +2,8 @@
 
 ## 20200820
 
-PyTorch の Dataset クラスを使ってみる
+PyTorch の Dataset クラスと DataLoader クラスを使ってみる
 
 - [LFWDataset.py](./LFWDataset.py)
 - https://pytorch.org/docs/stable/data.html#torch.utils.data.Dataset
+- https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader
