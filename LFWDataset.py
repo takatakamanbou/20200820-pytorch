@@ -21,7 +21,7 @@ class LFWDataset(torch.utils.data.Dataset):
 
         # reading the mean
         fn = os.path.join(self.dataRoot, 'meanL.npy')
-        self.meanL = np.load(fn)
+        self.meanL = np.load(fn).astype(np.float32)
 
         assert LT == 'L' or LT == 'T'
         self.LT = LT
