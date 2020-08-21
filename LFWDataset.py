@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import torch
 import os
-import pickle
+#import pickle
 
 
 class LFWDataset(torch.utils.data.Dataset):
@@ -45,7 +45,8 @@ class LFWDataset(torch.utils.data.Dataset):
         X -= self.meanL
         X /= 255.0
 
-        self.X = X
+        #self.X = X
+        self.X = X.reshape((self.ndat, -1))
 
 
     def __len__(self):
@@ -55,17 +56,19 @@ class LFWDataset(torch.utils.data.Dataset):
     
     def __getitem__(self, idx):
 
-        return self.X[i, ::]
+        return self.X[idx, ::]
     
 
 
 if __name__ == '__main__':
 
-    #import torchvision
-
     ds = LFWDataset(LT='T')
-    print(len(ds))
-    #print(ds[0])
+    print(len(ds), ds.ndat)
     print(ds.ndim)
 
-    #dl = torch.utils.data.DataLoader()
+    dl = torch.utils.data.DataLoader(ds, batch_size=32, shuffle=True, drop_last=False)
+    hoge = list(dl)  # getting the all batches from the iterator dl
+    print(len(hoge)) # number of the batches
+    print(hoge[0])   # the first batch
+    print(hoge[0].shape)
+    print(hoge[-1].shape)  # the last batch
