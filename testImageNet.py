@@ -20,3 +20,5 @@ print(dV.imgs[0])
 print()
 print(dV.classes[999])
 print(dV.imgs[-1])
+
+
