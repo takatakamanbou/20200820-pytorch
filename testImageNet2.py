@@ -23,7 +23,8 @@ print(dV)
 s1 = datetime.datetime.now()
 print('# datasets initialization:', s1 - s0)
 
-dl = torch.utils.data.DataLoader(dV, batch_size=10, shuffle=True)
+bsize = 10
+dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
 
 s2 = datetime.datetime.now()
 print('# dataloader initialization:', s2 - s1)
@@ -48,4 +49,4 @@ for ib, rv in enumerate(dl):
     print('#', ib, X.shape, lab)
 
 s4 = datetime.datetime.now()
-print(f'# loading {N} batches (batchsize = {batchsize}:', s4 - s3)
+print(f'# loading {N} batches (batchsize = {bsize}):', s4 - s3)
