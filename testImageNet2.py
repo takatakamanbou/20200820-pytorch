@@ -1,6 +1,7 @@
 import numpy as numpy
 import torch
 import torchvision
+import datetime
 
 p = '/Volumes/share/data/ILSVRC2012'
 #p = '/mnt/tlab-nas/share/data/ILSVRC2012'
@@ -13,13 +14,38 @@ trans = torchvision.transforms.Compose([
     torchvision.transforms.ToTensor(),
 ])
 
+s0 = datetime.datetime.now()
 
 #dL = torchvision.datasets.ImageNet(p)
 dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
 print(dV)
 
+s1 = datetime.datetime.now()
+print('# datasets initialization:', s1 - s0)
+
 dl = torch.utils.data.DataLoader(dV, batch_size=10, shuffle=True)
 
+s2 = datetime.datetime.now()
+print('# dataloader initialization:', s2 - s1)
 
-X, label = next(iter(dl))
+#X, lab = next(iter(dl))
+#print(X.shape)
 
+#X, lab = next(iter(dl))
+#print(X.shape)
+
+nbatch = len(dl)
+
+s3 = datetime.datetime.now()
+
+N = 10
+
+for ib, rv in enumerate(dl):
+    if ib == N:
+        break
+    X, lab = rv
+    sb = datetime.datetime.now()
+    print('#', ib, X.shape, lab)
+
+s4 = datetime.datetime.now()
+print(f'# loading {N} batches (batchsize = {batchsize}:', s4 - s3)
