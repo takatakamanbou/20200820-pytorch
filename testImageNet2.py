@@ -3,9 +3,10 @@ import torch
 import torchvision
 import datetime
 
-p = '/Volumes/share/data/ILSVRC2012'
+#p = '/Volumes/share/data/ILSVRC2012'
 #p = '/mnt/tlab-nas/share/data/ILSVRC2012'
 #p = '/Users/takataka/Desktop/ILSVRC2012'
+p = '/mnt/data/ILSVRC2012'
 
 # この transform は，動作確認のための最小限のもの．
 # 実際の実験の際は，画素値の平均を引く操作等，pre-trained モデルで使われたのを再現しないといけない
