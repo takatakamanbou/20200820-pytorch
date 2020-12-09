@@ -6,6 +6,10 @@ import datetime
 # path to ILSVRC2012
 p = '/mnt/data/ILSVRC2012'
 
+# loading VGG16 pretrained model
+vgg16 = torchvision.models.vgg16(pretrained=True)
+vgg16.eval()
+
 # device
 use_gpu_if_available = True
 if use_gpu_if_available and torch.cuda.is_available():
@@ -14,10 +18,8 @@ else:
     device = torch.device('cpu')
 print('# using', device)
 
+nn = vgg16.to(device)
 
-# loading VGG16 pretrained model
-vgg16 = torchvision.models.vgg16(pretrained=True)
-vgg16.eval()
 
 # setting the image transformation
 #    cf. https://pytorch.org/docs/stable/torchvision/models.html
@@ -48,7 +50,7 @@ with torch.no_grad():
         if ib == N:
             break
         X, lab = rv
-        output = vgg16(X)
+        output = nn(X)
         pred = output.max(1, keepdim=True)[1]
         nc = pred.eq(lab.view_as(pred)).sum().item()
         nd = len(X)
