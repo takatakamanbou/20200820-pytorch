@@ -6,7 +6,7 @@ import datetime
 p = '/mnt/data/ILSVRC2012'
 
 
-vgg16 = torchvision.models.vgg16(pretrained=true)
+vgg16 = torchvision.models.vgg16(pretrained=True)
 
 
 # この transform は，動作確認のための最小限のもの．
