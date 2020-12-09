@@ -49,7 +49,7 @@ with torch.no_grad():
     for ib, rv in enumerate(dl):
         if ib == N:
             break
-        X, lab = rv
+        X, lab = rv[0].to(device), rv[1].to(device)
         output = nn(X)
         pred = output.max(1, keepdim=True)[1]
         nc = pred.eq(lab.view_as(pred)).sum().item()
