@@ -3,14 +3,14 @@ import torch
 import torchvision
 import datetime
 
+# path to ILSVRC2012
 p = '/mnt/data/ILSVRC2012'
 
-
+# loading VGG16 pretrained model
 vgg16 = torchvision.models.vgg16(pretrained=True)
 
-
-# この transform は，動作確認のための最小限のもの．
-# 実際の実験の際は，画素値の平均を引く操作等，pre-trained モデルで使われたのを再現しないといけない
+# setting the image transformation
+#    cf. https://pytorch.org/docs/stable/torchvision/models.html
 trans = torchvision.transforms.Compose([
     torchvision.transforms.Resize((256, 256)),
     torchvision.transforms.CenterCrop((224, 224)),
@@ -23,7 +23,7 @@ trans = torchvision.transforms.Compose([
 
 s0 = datetime.datetime.now()
 
-#dL = torchvision.datasets.ImageNet(p)
+# dataset
 dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
 print(dV)
 
@@ -48,12 +48,15 @@ s3 = datetime.datetime.now()
 
 N = 10
 
-for ib, rv in enumerate(dl):
-    if ib == N:
-        break
-    X, lab = rv
-    sb = datetime.datetime.now()
-    print('#', ib, X.shape, lab)
+vgg16.eval()
+with torch.no_grad():
+    for ib, rv in enumerate(dl):
+        if ib == N:
+            break
+        X, lab = rv
+        output = vgg16(X)
+        sb = datetime.datetime.now()
+        print('#', ib, X.shape, lab)
 
 s4 = datetime.datetime.now()
 print(f'# loading {N} batches (batchsize = {bsize}):', s4 - s3)
