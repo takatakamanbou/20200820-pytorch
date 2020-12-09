@@ -12,7 +12,7 @@ vgg16 = torchvision.models.vgg16(pretrained=True)
 # この transform は，動作確認のための最小限のもの．
 # 実際の実験の際は，画素値の平均を引く操作等，pre-trained モデルで使われたのを再現しないといけない
 trans = torchvision.transforms.Compose([
-    torchvision.transforms.Resize(256, 256),
+    torchvision.transforms.Resize((256, 256)),
     torchvision.transforms.CenterCrop((224, 224)),
     torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     torchvision.transforms.ToTensor(),
