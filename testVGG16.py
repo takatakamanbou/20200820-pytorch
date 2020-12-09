@@ -5,12 +5,19 @@ import datetime
 
 p = '/mnt/data/ILSVRC2012'
 
+
+vgg16 = torchvision.models.vgg16(pretrained=true)
+
+
 # この transform は，動作確認のための最小限のもの．
 # 実際の実験の際は，画素値の平均を引く操作等，pre-trained モデルで使われたのを再現しないといけない
 trans = torchvision.transforms.Compose([
     torchvision.transforms.CenterCrop((224, 224)),
     torchvision.transforms.ToTensor(),
 ])
+
+
+
 
 s0 = datetime.datetime.now()
 
