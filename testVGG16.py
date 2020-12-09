@@ -21,10 +21,10 @@ trans = torchvision.transforms.Compose([
 
 # dataset
 dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
-print(dV)
+#print(dV)
 
 # dataloader
-bsize = 10
+bsize = 64
 dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
 nbatch = len(dl)
 
