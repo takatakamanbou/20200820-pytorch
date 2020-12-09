@@ -35,20 +35,20 @@ dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
 #print(dV)
 
 # dataloader
-bsize = 256
+bsize = 100
 dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
 nbatch = len(dl)
 
 s1 = datetime.datetime.now()
 
-N = 100  # number of batch to be fed
+N = 50  # number of batch to be fed
 
 ncorrect = 0
 ntotal = 0
 with torch.no_grad():
     for ib, rv in enumerate(dl):
-        if ib == N:
-            break
+        #if ib == N:
+        #    break
         X, lab = rv[0].to(device), rv[1].to(device)
         output = nn(X)
         pred = output.max(1, keepdim=True)[1]
