@@ -41,7 +41,7 @@ nbatch = len(dl)
 
 s1 = datetime.datetime.now()
 
-N = 10  # number of batch to be fed
+N = 100  # number of batch to be fed
 
 ncorrect = 0
 ntotal = 0
