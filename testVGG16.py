@@ -35,7 +35,7 @@ dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
 #print(dV)
 
 # dataloader
-bsize = 100
+bsize = 64
 dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
 nbatch = len(dl)
 
