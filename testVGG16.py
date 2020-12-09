@@ -57,9 +57,8 @@ with torch.no_grad():
         output = vgg16(X)
         pred = output.max(1, keepdim=True)[1]
         ncorrect = pred.eq(lab.view_as(pred)).sum().item()
-        print(ncorrect)
         sb = datetime.datetime.now()
-        print('#', ib, X.shape, lab)
+        print(f'# {ib}  {ncorrect}/{bsize}')
 
 s4 = datetime.datetime.now()
 print(f'# loading {N} batches (batchsize = {bsize}):', s4 - s3)
