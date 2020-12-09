@@ -28,6 +28,7 @@ bsize = 64
 dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
 nbatch = len(dl)
 
+s1 = datetime.datetime.now()
 
 N = 10  # number of batch to be fed
 
@@ -47,6 +48,8 @@ with torch.no_grad():
         ncorrect += nc
         ntotal += nd
 
-print(f'{ncorrect}/{ntotal} = {ncorrect/ntotal}')
+s2 = datetime.datetime.now()
 
-s4 = datetime.datetime.now()
+nerror = ntotal - ncorrect
+print(f'{nerror}/{ntotal} = {nerror/ntotal:.2f}')
+print(f'{s2 - s1}')
