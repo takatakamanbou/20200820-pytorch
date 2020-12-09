@@ -12,7 +12,8 @@ vgg16.eval()
 
 # device
 use_gpu_if_available = False
-if use_gpu_if_available and torch.cuda.is_available():
+use_CUDA = use_gpu_if_available and torch.cuda.is_available()
+if use_CUDA:
     device = torch.device('cuda')
 else:
     device = torch.device('cpu')
@@ -36,7 +37,8 @@ dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
 
 # dataloader
 bsize = 64
-dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
+#dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
+dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True, pin_memory=use_CUDA)
 nbatch = len(dl)
 
 s1 = datetime.datetime.now()
