@@ -47,6 +47,6 @@ with torch.no_grad():
         ncorrect += nc
         ntotal += nd
 
-print(f'{nc}/{nd} = {nc/nd}'')
+print(f'{nc}/{nd} = {nc/nd}')
 
 s4 = datetime.datetime.now()
