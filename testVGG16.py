@@ -8,6 +8,7 @@ p = '/mnt/data/ILSVRC2012'
 
 # loading VGG16 pretrained model
 vgg16 = torchvision.models.vgg16(pretrained=True)
+vgg16.eval()
 
 # setting the image transformation
 #    cf. https://pytorch.org/docs/stable/torchvision/models.html
@@ -18,37 +19,20 @@ trans = torchvision.transforms.Compose([
     torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
 ])
 
-
-
-
-s0 = datetime.datetime.now()
-
 # dataset
 dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
 print(dV)
 
-s1 = datetime.datetime.now()
-print('# datasets initialization:', s1 - s0)
-
+# dataloader
 bsize = 10
 dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
-
-s2 = datetime.datetime.now()
-print('# dataloader initialization:', s2 - s1)
-
-#X, lab = next(iter(dl))
-#print(X.shape)
-
-#X, lab = next(iter(dl))
-#print(X.shape)
-
 nbatch = len(dl)
 
-s3 = datetime.datetime.now()
 
-N = 10
+N = 10  # number of batch to be fed
 
-vgg16.eval()
+ncorrect = 0
+ntotal = 0
 with torch.no_grad():
     for ib, rv in enumerate(dl):
         if ib == N:
@@ -56,9 +40,13 @@ with torch.no_grad():
         X, lab = rv
         output = vgg16(X)
         pred = output.max(1, keepdim=True)[1]
-        ncorrect = pred.eq(lab.view_as(pred)).sum().item()
+        nc = pred.eq(lab.view_as(pred)).sum().item()
+        nd = len(X)
         sb = datetime.datetime.now()
-        print(f'# {ib}  {ncorrect}/{bsize}')
+        print(f'# {ib}  {nc}/{nd}')
+        ncorrect += nc
+        ntotal += nd
+
+print(f'{nc}/{nd} = {nc/nd}'')
 
 s4 = datetime.datetime.now()
-print(f'# loading {N} batches (batchsize = {bsize}):', s4 - s3)
