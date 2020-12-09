@@ -6,6 +6,15 @@ import datetime
 # path to ILSVRC2012
 p = '/mnt/data/ILSVRC2012'
 
+# device
+use_gpu_if_available = False
+if use_gpu_if_available and torch.cuda.is_available():
+    device = torch.device('cuda')
+else:
+    device = torch.device('cpu')
+print('# using', device)
+
+
 # loading VGG16 pretrained model
 vgg16 = torchvision.models.vgg16(pretrained=True)
 vgg16.eval()
