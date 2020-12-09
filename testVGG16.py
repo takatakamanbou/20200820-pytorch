@@ -55,6 +55,9 @@ with torch.no_grad():
             break
         X, lab = rv
         output = vgg16(X)
+        pred = output.max(1, keepdim=True)[1]
+        hoge = pred.eq(lab.view_as(pred)).item()
+        print(hoge)
         sb = datetime.datetime.now()
         print('#', ib, X.shape, lab)
 
