@@ -49,8 +49,8 @@ ncorrect = 0
 ntotal = 0
 with torch.no_grad():
     for ib, rv in enumerate(dl):
-        if ib == N:
-            break
+        #if ib == N:
+        #    break
         X, lab = rv[0].to(device), rv[1].to(device)
         output = nn(X)
         pred = output.max(1, keepdim=True)[1]
