@@ -11,7 +11,7 @@ vgg16 = torchvision.models.vgg16(pretrained=True)
 vgg16.eval()
 
 # device
-use_gpu_if_available = True
+use_gpu_if_available = False
 use_CUDA = use_gpu_if_available and torch.cuda.is_available()
 if use_CUDA:
     device = torch.device('cuda')
