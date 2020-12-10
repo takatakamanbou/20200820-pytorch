@@ -4,6 +4,7 @@
 
 VGG16 のテスト
 
+- [ex20201209.md](./ex20201209.md)
 - [testVGG16.py](./testVGG16.py)
 - https://www-tlab.math.ryukoku.ac.jp/tlab/?takataka/note/2020-12-09#VGG16
 
