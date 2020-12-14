@@ -42,9 +42,16 @@ nbatch = len(dl)
 
 s1 = datetime.datetime.now()
 
+ib = 12609
+print(dl[ib].shape)
+
+'''
 for ib, rv in enumerate(dl):
     X, lab = rv[0].to(device), rv[1].to(device)
     print(f'# {ib}  {X.shape}')
+'''
+
+
 
 s2 = datetime.datetime.now()
 
