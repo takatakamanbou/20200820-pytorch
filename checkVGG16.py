@@ -36,7 +36,7 @@ dL = torchvision.datasets.ImageNet(p, split='train', transform=trans)
 #print(dV)
 
 # dataloader
-bsize = 100
+bsize = 10
 dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=False, pin_memory=use_CUDA, num_workers=8)
 nbatch = len(dl)
 
@@ -48,7 +48,7 @@ s1 = datetime.datetime.now()
 for ib, rv in enumerate(dl):
     if ib % 1000 == 0:
         print(f'# {ib} ')
-    if ib == 12609:
+    if ib == 12609*10:
         X, lab = rv[0].to(device), rv[1].to(device)
         print(f'# {ib}  {X.shape}')
         for i, label in enumerate(lab):
