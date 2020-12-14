@@ -42,8 +42,8 @@ nbatch = len(dl)
 
 s1 = datetime.datetime.now()
 
-ib = 12609
-print(dl[ib].shape)
+#ib = 12609
+#print(dl[ib].shape)
 
 for ib, rv in enumerate(dl):
     if ib % 1000 == 0:
