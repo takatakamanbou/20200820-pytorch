@@ -46,8 +46,16 @@ s1 = datetime.datetime.now()
 #print(dl[ib].shape)
 
 for ib, rv in enumerate(dl):
+
     if ib % 1000 == 0:
         print(f'# {ib} ')
+
+    if 100000 <= ib <= 101000:
+        X, lab = rv[0].to(device), rv[1].to(device)
+        print(f'# {ib}  {X.shape}')
+        for i, label in enumerate(lab):
+            print(i, lab)
+
     if ib // 10 == 12609:
         X, lab = rv[0].to(device), rv[1].to(device)
         print(f'# {ib}  {X.shape}')
