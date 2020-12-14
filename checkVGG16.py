@@ -46,6 +46,8 @@ ib = 12609
 print(dl[ib].shape)
 
 for ib, rv in enumerate(dl):
+    if ib % 1000 == 0:
+        print(f'# {ib} ')
     if ib == 12609:
         X, lab = rv[0].to(device), rv[1].to(device)
         print(f'# {ib}  {X.shape}')
