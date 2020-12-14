@@ -37,7 +37,7 @@ dL = torchvision.datasets.ImageNet(p, split='train', transform=trans)
 
 # dataloader
 bsize = 100
-dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=8)
+dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=False, pin_memory=use_CUDA, num_workers=8)
 nbatch = len(dl)
 
 s1 = datetime.datetime.now()
