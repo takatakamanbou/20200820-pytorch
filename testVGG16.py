@@ -38,7 +38,7 @@ dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
 # dataloader
 bsize = 64
 #dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
-dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=8)
+dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=16)
 nbatch = len(dl)
 
 s1 = datetime.datetime.now()
