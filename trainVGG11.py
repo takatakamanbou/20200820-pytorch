@@ -1,6 +1,7 @@
 import numpy as numpy
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 import torch.optim as optim
 import torchvision
 import datetime
@@ -9,7 +10,6 @@ import ilsvrc2012
 
 # loading VGG11-bn pretrained model
 vgg11_bn = torchvision.models.vgg11_bn(pretrained=True)
-#vgg11_bn.eval()
 print(vgg11_bn)
 
 # device
@@ -30,30 +30,31 @@ bsize = 64
 dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=8)
 nbatch = len(dl)
 
-# loss & optimizer
-#criterion = nn.
+# optimizer & criterion
+#optimizer = optim.Adam(nn.parameters(), )
+optimizer = optim.SGD(nn.parameters(), lr=0.01, momentum=0.9)
+criterion = nn.CrossEntropyLoss()
 
 s1 = datetime.datetime.now()
 
+nn.train()
 
+ncList = np.zeros(nbatch, dtype=int)
+lossList = np.empty(nbatch)
 
+for ib, rv in enumerate(dl):
+    X, lab = rv[0].to(device), rv[1].to(device)
+    optimizer.zero_grad()
+    output = F.logsoftmax(nn(X))
+    loss = criterion(output, lab)
+    loss.backward()
+    optimizer.step()
+    lossList[ib] = loss.item()
+    pred = output.max(1, keepdim=True)[1]
+    ncList[ib] = pred.eq(lab.view_as(pred)).sum().item()
 
-with torch.no_grad():
-    for ib, rv in enumerate(dl):
-        if ib == N:
-            break
-        X, lab = rv[0].to(device), rv[1].to(device)
-        output = nn(X)
-        pred = output.max(1, keepdim=True)[1]
-        nc = pred.eq(lab.view_as(pred)).sum().item()
-        nd = len(X)
-        sb = datetime.datetime.now()
-        print(f'# {ib}  {nc}/{nd}')
-        ncorrect += nc
-        ntotal += nd
+    print(ib, ncList[ib], lossList[ib])
+
 
 s2 = datetime.datetime.now()
 
-nerror = ntotal - ncorrect
-print(f'{nerror}/{ntotal} = {nerror/ntotal:.2f}')
-print(f'{s2 - s1}')
