@@ -62,8 +62,8 @@ for ib, rv in enumerate(dl):
         loss_mean = np.mean(lossList)/bsize
         print(f'{ib}/{nbatch}  {loss_mean:.6f}  {nc}/{bsize*nb} = {nc/(bsize*nb)}')
 
-    if ib == 100:
-        break
+    #if ib == 100:
+    #    break
 
 s2 = datetime.datetime.now()
 
