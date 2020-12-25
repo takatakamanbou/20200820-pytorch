@@ -1,5 +1,7 @@
 import numpy as numpy
 import torch
+import torch.nn as nn
+import torch.optim as optim
 import torchvision
 import datetime
 
@@ -7,7 +9,8 @@ import ilsvrc2012
 
 # loading VGG11-bn pretrained model
 vgg11_bn = torchvision.models.vgg11_bn(pretrained=True)
-vgg11_bn.eval()
+#vgg11_bn.eval()
+print(vgg11_bn)
 
 # device
 use_gpu_if_available = True
@@ -21,22 +24,20 @@ print('# using', device)
 nn = vgg11_bn.to(device)
 
 
-# dataset
-dV = ilsvrc2012.datasetsT
-#print(dV)
-
-# dataloader
+# dataset & dataloader
+dL = ilsvrc2012.datasetsL
 bsize = 64
-#dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True)
-dl = torch.utils.data.DataLoader(dV, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=8)
+dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=8)
 nbatch = len(dl)
+
+# loss & optimizer
+#criterion = nn.
 
 s1 = datetime.datetime.now()
 
-N = 100  # number of batch to be fed
 
-ncorrect = 0
-ntotal = 0
+
+
 with torch.no_grad():
     for ib, rv in enumerate(dl):
         if ib == N:
