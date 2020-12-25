@@ -8,7 +8,7 @@ import sys
 import ilsvrc2012
 
 # loading VGG16 model
-vgg16 = torchvision.models.vgg11_bn(pretrained=False)
+vgg16 = torchvision.models.vgg16(pretrained=False)
 print(vgg16)
 
 # loading the parameters
