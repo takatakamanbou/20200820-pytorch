@@ -26,7 +26,7 @@ nn = vgg11_bn.to(device)
 # dataset & dataloader
 dL = ilsvrc2012.datasetsL
 bsize = 64
-dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=2)
+dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=16)
 nbatch = len(dl)
 
 # optimizer
