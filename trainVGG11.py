@@ -34,9 +34,6 @@ nbatch = len(dl)
 optimizer = optim.Adam(nn.parameters(), lr=0.001, weight_decay=0.0)
 
 
-criterion = torch.nn.CrossEntropyLoss()
-
-
 nn.train()
 
 nb = 1024 // bsize
@@ -49,7 +46,7 @@ for ib, rv in enumerate(dl):
     X, lab = rv[0].to(device), rv[1].to(device)
     optimizer.zero_grad()
     output = F.log_softmax(nn(X))
-    loss = criterion(output, lab)
+    loss = F.nll_loss(output, lab, reduction='sum')
     loss.backward()
     optimizer.step()
 
