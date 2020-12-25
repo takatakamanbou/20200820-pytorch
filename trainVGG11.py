@@ -44,7 +44,7 @@ lossList = np.empty(nbatch)
 for ib, rv in enumerate(dl):
     X, lab = rv[0].to(device), rv[1].to(device)
     optimizer.zero_grad()
-    output = F.logsoftmax(nn(X))
+    output = F.log_softmax(nn(X))
     loss = criterion(output, lab)
     loss.backward()
     optimizer.step()
