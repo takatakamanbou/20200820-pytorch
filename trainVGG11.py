@@ -3,8 +3,7 @@ import torch
 import torchvision
 import datetime
 
-# path to ILSVRC2012
-p = '/mnt/data/ILSVRC2012'
+import ilsvrc2012
 
 # loading VGG11-bn pretrained model
 vgg11_bn = torchvision.models.vgg11_bn(pretrained=True)
@@ -22,17 +21,8 @@ print('# using', device)
 nn = vgg11_bn.to(device)
 
 
-# setting the image transformation
-#    cf. https://pytorch.org/docs/stable/torchvision/models.html
-trans = torchvision.transforms.Compose([
-    torchvision.transforms.Resize((256, 256)),
-    torchvision.transforms.CenterCrop((224, 224)),
-    torchvision.transforms.ToTensor(),
-    torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
-])
-
 # dataset
-dV = torchvision.datasets.ImageNet(p, split='val', transform=trans)
+dV = ilsvrc2012.datasetsT
 #print(dV)
 
 # dataloader
