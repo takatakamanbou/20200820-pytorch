@@ -8,7 +8,7 @@ import datetime
 import ilsvrc2012
 
 # loading VGG11-bn pretrained model
-vgg11_bn = torchvision.models.vgg11_bn(pretrained=True)
+vgg11_bn = torchvision.models.vgg11_bn(pretrained=False)
 print(vgg11_bn)
 
 # device
