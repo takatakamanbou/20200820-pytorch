@@ -8,8 +8,8 @@ import sys
 
 import ilsvrc2012
 
-fnParam_IN = 'data/ex20201226_trainVGG16_epoch001.pth'
-fnParam_OUT = 'data/ex20201226_trainVGG16_epoch002.pth'
+fnParam_IN = 'data/ex20201226_trainVGG16_epoch002.pth'
+fnParam_OUT = 'data/ex20201226_trainVGG16_epoch003.pth'
 
 # loading VGG11-bn pretrained model
 vgg16 = torchvision.models.vgg16(pretrained=False)
