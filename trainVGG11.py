@@ -46,11 +46,11 @@ for ib, rv in enumerate(dl):
     X, lab = rv[0].to(device), rv[1].to(device)
     optimizer.zero_grad()
     output = F.log_softmax(nn(X))
-    loss = F.nll_loss(output, lab, reduction='sum')
+    loss = F.nll_loss(output, lab)
     loss.backward()
     optimizer.step()
 
-    lossList[ib % nb] = loss.item()
+    lossList[ib % nb] = loss.sum().item()
     pred = output.max(1, keepdim=True)[1]
     ncList[ib % nb] = pred.eq(lab.view_as(pred)).sum().item()
 
