@@ -29,17 +29,20 @@ bsize = 64
 dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=8)
 nbatch = len(dl)
 
-# optimizer & criterion
+# optimizer
 #optimizer = optim.SGD(nn.parameters(), lr=0.01, momentum=0.9)
 optimizer = optim.Adam(nn.parameters(), lr=0.001, weight_decay=0.0)
+
+
 criterion = torch.nn.CrossEntropyLoss()
 
 s1 = datetime.datetime.now()
 
 nn.train()
 
-ncList = np.zeros(nbatch, dtype=int)
-lossList = np.empty(nbatch)
+nb = 1024 // bsize
+ncList = np.zeros(nb, dtype=int)
+lossList = np.zeros(nb)
 
 for ib, rv in enumerate(dl):
     X, lab = rv[0].to(device), rv[1].to(device)
@@ -48,11 +51,15 @@ for ib, rv in enumerate(dl):
     loss = criterion(output, lab)
     loss.backward()
     optimizer.step()
-    lossList[ib] = loss.item()
-    pred = output.max(1, keepdim=True)[1]
-    ncList[ib] = pred.eq(lab.view_as(pred)).sum().item()
 
-    print(ib, ncList[ib], lossList[ib])
+    lossList[ib % nb] = loss.item()
+    pred = output.max(1, keepdim=True)[1]
+    ncList[ib % nb] = pred.eq(lab.view_as(pred)).sum().item()
+
+    if ib % nb == nb - 1:
+        nc = np.sum(ncList)
+        loss_mean = np.mean(lossList)/bsize
+        print(f'{ib}/{nbatch} {loss_mean:.2f} {nc/(bsize*nb)}')
 
 
 s2 = datetime.datetime.now()
