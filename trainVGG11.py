@@ -1,6 +1,5 @@
 import numpy as numpy
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import torchvision
@@ -33,7 +32,7 @@ nbatch = len(dl)
 # optimizer & criterion
 #optimizer = optim.Adam(nn.parameters(), )
 optimizer = optim.SGD(nn.parameters(), lr=0.01, momentum=0.9)
-criterion = nn.CrossEntropyLoss()
+criterion = torch.nn.CrossEntropyLoss()
 
 s1 = datetime.datetime.now()
 
