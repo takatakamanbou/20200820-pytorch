@@ -12,7 +12,7 @@ vgg11_bn = torchvision.models.vgg11_bn(pretrained=False)
 print(vgg11_bn)
 
 # loading the parameters
-fnParam = 'data/hoge.pth'
+fnParam = 'data/ex1225epoch002.pth'
 with open(fnParam, mode='rb') as f:
     vgg11_bn.load_state_dict(torch.load(f))
 
