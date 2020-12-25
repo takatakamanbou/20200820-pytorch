@@ -29,7 +29,7 @@ nn.eval()
 
 # dataset & dataloader
 dT = ilsvrc2012.datasetsT
-bsize = 256
+bsize = 64
 dl = torch.utils.data.DataLoader(dT, batch_size=bsize, shuffle=False, pin_memory=use_CUDA, num_workers=16)
 nbatch = len(dl)
 
@@ -41,8 +41,8 @@ ncorrect = 0
 ntotal = 0
 with torch.no_grad():
     for ib, rv in enumerate(dl):
-        if ib == N:
-            break
+        #if ib == N:
+        #    break
         X, lab = rv[0].to(device), rv[1].to(device)
         output = F.log_softmax(nn(X), dim=1)
         pred = output.max(1, keepdim=True)[1]
@@ -56,5 +56,6 @@ with torch.no_grad():
 s2 = datetime.datetime.now()
 
 nerror = ntotal - ncorrect
-print(f'{nerror}/{ntotal} = {nerror/ntotal:.2f}')
+#print(f'{nerror}/{ntotal} = {nerror/ntotal:.2f}')
+print(f'{ncorrect}/{ntotal} = {ncorrect/ntotal:.2f}')
 print(f'{s2 - s1}')
