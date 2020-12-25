@@ -12,7 +12,7 @@ vgg16 = torchvision.models.vgg16(pretrained=False)
 print(vgg16)
 
 # loading the parameters
-fnParam = 'data/ex20201226_trainVGG16_epoch001.pth'
+fnParam = 'data/ex20201226_trainVGG16_epoch002.pth'
 with open(fnParam, mode='rb') as f:
     vgg16.load_state_dict(torch.load(f))
 
