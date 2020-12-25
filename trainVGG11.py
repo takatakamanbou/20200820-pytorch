@@ -30,8 +30,8 @@ dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=
 nbatch = len(dl)
 
 # optimizer & criterion
-#optimizer = optim.Adam(nn.parameters(), )
-optimizer = optim.SGD(nn.parameters(), lr=0.01, momentum=0.9)
+#optimizer = optim.SGD(nn.parameters(), lr=0.01, momentum=0.9)
+optimizer = optim.Adam(nn.parameters(), lr=0.001, weight_decay=0.0)
 criterion = torch.nn.CrossEntropyLoss()
 
 s1 = datetime.datetime.now()
@@ -44,6 +44,7 @@ lossList = np.empty(nbatch)
 for ib, rv in enumerate(dl):
     X, lab = rv[0].to(device), rv[1].to(device)
     optimizer.zero_grad()
+    #output = nn(X)
     output = F.log_softmax(nn(X))
     loss = criterion(output, lab)
     loss.backward()
