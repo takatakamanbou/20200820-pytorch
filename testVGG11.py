@@ -3,6 +3,7 @@ import torch
 import torch.nn.functional as F
 import torchvision
 import datetime
+import sys
 
 import ilsvrc2012
 
@@ -50,6 +51,7 @@ with torch.no_grad():
         nd = len(X)
         sb = datetime.datetime.now()
         print(f'# {ib}  {nc}/{nd}')
+        sys.stdout.flush()
         ncorrect += nc
         ntotal += nd
 

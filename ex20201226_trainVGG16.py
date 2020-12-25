@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import torchvision
 import datetime
+import sys
 
 import ilsvrc2012
 
@@ -58,6 +59,7 @@ for ib, rv in enumerate(dl):
         nc = np.sum(ncList)
         loss_mean = np.mean(lossList)/bsize
         print(f'{ib}/{nbatch}  {loss_mean:.6f}  {nc}/{bsize*nb} = {nc/(bsize*nb)}')
+        sys.stdout.flush()
 
     #if ib == 100:
     #    break
