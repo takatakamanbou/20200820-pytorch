@@ -31,7 +31,7 @@ nbatch = len(dl)
 
 # optimizer
 #optimizer = optim.SGD(nn.parameters(), lr=0.01, momentum=0.9)
-optimizer = optim.Adam(nn.parameters(), lr=0.001, weight_decay=0.0)
+optimizer = optim.Adam(nn.parameters(), lr=0.0001, weight_decay=0.0)
 
 
 nn.train()
