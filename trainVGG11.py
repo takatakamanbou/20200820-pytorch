@@ -69,7 +69,7 @@ s2 = datetime.datetime.now()
 
 print(s2-s1)
 
-fnParam = 'hoge.pth'
+fnParam = 'data/hoge.pth'
 with open(fnParam, mode='wb') as f:
     torch.save(nn.state_dict(), f)    
 
