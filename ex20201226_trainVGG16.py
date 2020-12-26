@@ -25,7 +25,7 @@ nn = vgg16.to(device)
 
 
 # dataset & dataloader
-dL = ilsvrc2012.datasetsL
+dL = ilsvrc2012.datasets('L')
 bsize = 256
 dl = torch.utils.data.DataLoader(dL, batch_size=bsize, shuffle=True, pin_memory=use_CUDA, num_workers=16)
 nbatch = len(dl)
