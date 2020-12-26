@@ -38,7 +38,7 @@ if __name__ == '__main__':
     nn.eval()
 
     # dataset & dataloader
-    dT = ilsvrc2012.datasetsT
+    dT = ilsvrc2012.datasets('T')
     bsize = 64
     dl = torch.utils.data.DataLoader(dT, batch_size=bsize, shuffle=False, pin_memory=use_CUDA, num_workers=16)
     nbatch = len(dl)

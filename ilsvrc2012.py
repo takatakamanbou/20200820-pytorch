@@ -15,7 +15,7 @@ transL = T.Compose([
     normalize
 ])
 
-datasetsL = torchvision.datasets.ImageNet(path, split='train', transform=transL)
+#datasetsL = torchvision.datasets.ImageNet(path, split='train', transform=transL)
 
 ##### T #####
 
@@ -27,4 +27,15 @@ transT = torchvision.transforms.Compose([
     normalize
 ])
 
-datasetsT = torchvision.datasets.ImageNet(path, split='val', transform=transT)
+#datasetsT = torchvision.datasets.ImageNet(path, split='val', transform=transT)
+
+def datasets(LT):
+
+    assert LT == 'L' or LT == 'T'
+
+    if LT == 'L':
+        ds = torchvision.datasets.ImageNet(path, split='train', transform=transL)
+    else:
+        ds = torchvision.datasets.ImageNet(path, split='val', transform=transT)
+
+    return ds
