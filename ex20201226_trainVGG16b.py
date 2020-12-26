@@ -13,13 +13,15 @@ import ilsvrc2012
 if __name__ == '__main__':
 
     if len(sys.argv) != 2:
-        print(f'usage: {sys.argv[0]} epoch_prev')
+        print(f'usage: {sys.argv[0]} epoch_now')
         exit()
 
-    epoch_prev = int(sys.argv[1])
+    epoch_now = int(sys.argv[1])
+    epoch_prev = epoch_now - 1
+    assert epoch_prev >= 0
 
     fnParam_prev = f'data/ex20201226_trainVGG16_epoch{epoch_prev:03d}.pth'
-    fnParam_now = f'data/ex20201226_trainVGG16_epoch{epoch_prev+1:03d}.pth'
+    fnParam_now = f'data/ex20201226_trainVGG16_epoch{epoch_now:03d}.pth'
 
     if os.path.exists(fnParam_now):
         print(f'{fnParam_now} exists!')
@@ -32,7 +34,7 @@ if __name__ == '__main__':
 
 
     # loading the parameters
-    if epoch_prev > 0:
+    if epoch_prev != 0:
         with open(fnParam_prev, mode='rb') as f:
             vgg16.load_state_dict(torch.load(f))
 
@@ -84,9 +86,6 @@ if __name__ == '__main__':
             loss_mean = np.mean(lossList)/bsize
             print(f'{ib}/{nbatch}  {loss_mean:.6f}  {nc}/{bsize*nb} = {nc/(bsize*nb)}')
             sys.stdout.flush()
-
-        #if ib == 100:
-        #    break
 
     s2 = datetime.datetime.now()
 
