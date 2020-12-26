@@ -13,7 +13,7 @@ import ilsvrc2012
 if __name__ == '__main__':
 
     if len(sys.argv) != 2:
-        print(f'usage: {sys.argv[0]} epoch')
+        print(f'usage: {sys.argv[0]} epoch_prev')
         exit()
 
     epoch_prev = int(sys.argv[1])
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     if os.path.exists(fnParam_now):
         print(f'{fnParam_now} exists!')
         exit()
-        
+
 
     # loading VGG11-bn pretrained model
     vgg16 = torchvision.models.vgg16(pretrained=False)
@@ -32,8 +32,9 @@ if __name__ == '__main__':
 
 
     # loading the parameters
-    with open(fnParam_prev, mode='rb') as f:
-        vgg16.load_state_dict(torch.load(f))
+    if epoch_prev > 0:
+        with open(fnParam_prev, mode='rb') as f:
+            vgg16.load_state_dict(torch.load(f))
 
     # device
     use_gpu_if_available = True
