@@ -29,12 +29,13 @@ class DCTnet(nn.Module):
         self.conv01.weight = nn.Parameter(torch.Tensor(W), requires_grad=False)
         # (28, 28, 64)
 
-        self.conv02 = nn.Conv2d(64, 256, 3)
+        self.conv02a = nn.Conv2d(64, 256, 3)
+        self.conv02b = nn.Conv2d(256, 256, 3)
         self.pool1 = nn.MaxPool2d(2, 2)
         # (14, 14, 256)
 
-        self.conv03 = nn.Conv2d(256, 512, 3)
-        self.conv04 = nn.Conv2d(512, 512, 3)
+        self.conv03a = nn.Conv2d(256, 512, 3)
+        self.conv03b = nn.Conv2d(512, 512, 3)
         self.pool2 = nn.MaxPool2d(2, 2)
         # (7, 7, 512)
 
@@ -52,11 +53,12 @@ class DCTnet(nn.Module):
 
         X = self.conv01(X)
 
-        X = F.relu(self.conv02(X))
+        X = F.relu(self.conv02a(X))
+        X = F.relu(self.conv02b(X))
         X = self.pool1(X)
 
-        X = F.relu(self.conv03(X))
-        X = F.relu(self.conv04(X))
+        X = F.relu(self.conv03a(X))
+        X = F.relu(self.conv03b(X))
         X = self.pool2(X)
 
         X = self.avepool1(X)
