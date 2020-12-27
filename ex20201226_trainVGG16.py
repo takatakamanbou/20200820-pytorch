@@ -93,7 +93,7 @@ if __name__ == '__main__':
                 print(f'{ib}/{nbatch}  {loss_mean:.6f}  {nc}/{bsize*nb} = {nc/(bsize*nb)}')
                 sys.stdout.flush()
         '''
-
+        sys.stdout.flush()
         s2 = datetime.datetime.now()
 
         print(s2-s1)
