@@ -97,7 +97,7 @@ if __name__ == '__main__':
         print(s2-s1)
 
         print(f'# writing to {fnParam_now}')
-        #with open(fnParam_now, mode='wb') as f:
-        #    torch.save(nn.state_dict(), f)    
+        with open(fnParam_now, mode='wb') as f:
+            torch.save(nn.state_dict(), f)    
 
 
