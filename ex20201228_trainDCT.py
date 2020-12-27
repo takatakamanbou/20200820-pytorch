@@ -41,7 +41,7 @@ if __name__ == '__main__':
     print(vgg16)
 
     # loading the parameters
-    fnParam_prev = f'data/ex20201226_trainVGG16_epoch{epoch_prev:03d}.pth'
+    fnParam_prev = f'data/ex20201228_trainDCT_epoch{epoch_prev:03d}.pth'
     if epoch_prev != 0:
         with open(fnParam_prev, mode='rb') as f:
             vgg16.load_state_dict(torch.load(f))
