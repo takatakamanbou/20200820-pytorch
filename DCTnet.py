@@ -15,6 +15,8 @@ def kernelDCT2d():
             W[i*8+j, 1, ::] = basis[i, j, ::]
             W[i*8+j, 2, ::] = basis[i, j, ::]
 
+    return W
+
 
 class DCTnet(nn.Module):
 
@@ -23,7 +25,8 @@ class DCTnet(nn.Module):
         super(DCTnet, self).__init__()
 
         self.conv01 = nn.Conv2d(3, 64, 8, stride = 8, bias = False)
-        self.conv01.weight = nn.Parameter(torch.Tensor(DCT2d.W), requires_grad=False)
+        W = kernelDCT2d()
+        self.conv01.weight = nn.Parameter(torch.Tensor(W), requires_grad=False)
         # (28, 28, 64)
 
         self.conv02 = nn.Conv2d(64, 256, 3)
