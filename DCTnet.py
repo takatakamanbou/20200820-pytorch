@@ -63,11 +63,11 @@ class DCTnet(nn.Module):
 
         X = X.view(-1, 512*7*7)
 
-        X = F.relu(self.fc1(x))
+        X = F.relu(self.fc1(X))
         X = self.dropout1(X)
-        X = F.relu(self.fc2(x))
+        X = F.relu(self.fc2(X))
         X = self.dropout2(X)
-        X = self.fc3(x)
+        X = self.fc3(X)
 
         return X
 
