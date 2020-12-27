@@ -95,8 +95,10 @@ if __name__ == '__main__':
         s2 = datetime.datetime.now()
 
         print(s2-s1)
+        sys.stdout.flush()
 
         print(f'# writing to {fnParam_now}')
+        sys.stdout.flush()
         with open(fnParam_now, mode='wb') as f:
             torch.save(nn.state_dict(), f)    
 
