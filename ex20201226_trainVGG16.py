@@ -94,9 +94,6 @@ if __name__ == '__main__':
                 print(f'{ib}/{nbatch}  {loss_mean:.6f}  {nc}/{bsize*nb} = {nc/(bsize*nb)}')
                 sys.stdout.flush()
 
-            if ib == 8:
-                break
-
         s2 = datetime.datetime.now()
 
         print(s2-s1)
