@@ -74,7 +74,6 @@ if __name__ == '__main__':
 
         s1 = datetime.datetime.now()
 
-        '''
         for ib, rv in enumerate(dl):
             X, lab = rv[0].to(device), rv[1].to(device)
             optimizer.zero_grad()
@@ -92,8 +91,7 @@ if __name__ == '__main__':
                 loss_mean = np.mean(lossList)/bsize
                 print(f'{ib}/{nbatch}  {loss_mean:.6f}  {nc}/{bsize*nb} = {nc/(bsize*nb)}')
                 sys.stdout.flush()
-        '''
-        sys.stdout.flush()
+
         s2 = datetime.datetime.now()
 
         print(s2-s1)
