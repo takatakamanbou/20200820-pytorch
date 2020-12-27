@@ -64,5 +64,5 @@ if __name__ == '__main__':
 
     nerror = ntotal - ncorrect
     #print(f'{nerror}/{ntotal} = {nerror/ntotal:.2f}')
-    print(f'{ncorrect}/{ntotal} = {ncorrect/ntotal:.2f}')
+    print(f'{ncorrect}/{ntotal} = {ncorrect/ntotal:.3f}')
     print(f'{s2 - s1}')
