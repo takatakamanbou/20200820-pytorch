@@ -20,7 +20,7 @@ class DCTnet(nn.Module):
 
     def __init__(self):
 
-        super(network, self).__init__()
+        super(DCTnet, self).__init__()
 
         self.conv01 = nn.Conv2d(3, 64, 8, stride = 8, bias = False)
         self.conv01.weight = nn.Parameter(torch.Tensor(DCT2d.W), requires_grad=False)
