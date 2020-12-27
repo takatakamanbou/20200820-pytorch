@@ -66,10 +66,12 @@ if __name__ == '__main__':
         print()
         print(f'##### epoch {epoch_now} #####')
         print()
+        sys.stdout.flush()
 
         fnParam_now = f'data/ex20201226_trainVGG16_epoch{epoch_now:03d}.pth'
         if os.path.exists(fnParam_now):
             print(f'{fnParam_now} exists!')
+            sys.stdout.flush()
             exit()
 
         s1 = datetime.datetime.now()
