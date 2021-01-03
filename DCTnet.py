@@ -204,6 +204,7 @@ class DCTnet2v2(nn.Module):
         print('### (03) X.shape =', X.shape)
 
         X = self.avepool1(X)
+        print('### (avepool) X.shape =', X.shape)
 
         X = X.view(-1, 512*7*7)
 
