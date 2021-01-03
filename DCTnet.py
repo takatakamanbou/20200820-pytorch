@@ -189,15 +189,17 @@ class DCTnet2v2(nn.Module):
         Xg = self.conv01g(Xg)
         Xb = self.conv01b(Xb)
         X = torch.cat((Xr, Xg, Xb), dim=1)
-        print('### (2) X.shape =', X.shape)
+        print('### (01) X.shape =', X.shape)
 
         X = F.relu(self.conv02a(X))
         X = F.relu(self.conv02b(X))
         X = self.pool1(X)
+        print('### (02) X.shape =', X.shape)
 
         X = F.relu(self.conv03a(X))
         X = F.relu(self.conv03b(X))
         X = self.pool2(X)
+        print('### (03) X.shape =', X.shape)
 
         X = self.avepool1(X)
 
