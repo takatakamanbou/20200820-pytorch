@@ -172,7 +172,7 @@ class DCTnet2v2(nn.Module):
         #self.avepool1 = nn.AdaptiveAvgPool2d((7, 7))
 
         #self.fc1 = nn.Linear(512 * 7 * 7, 4096)
-        self.fc1 = nn.Linear(512 * 6 * 6, 4096)
+        self.fc1 = nn.Linear(512 * 8 * 8, 4096)
         self.fc2 = nn.Linear(4096, 4096)
         self.fc3 = nn.Linear(4096, 1000)
 
@@ -207,7 +207,7 @@ class DCTnet2v2(nn.Module):
 
         #X = X.view(-1, 512*7*7)
         #X = X.reshape(-1, 512*7*7)
-        X = X.view(-1, 512*6*6)
+        X = X.view(-1, 512*8*8)
 
         X = F.relu(self.fc1(X))
         X = self.dropout1(X)
