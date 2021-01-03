@@ -152,7 +152,7 @@ class DCTnet2v2(nn.Module):
         self.conv01r = nn.Conv2d(3, 64, 8, stride = 8, bias = False)
         self.conv01g = nn.Conv2d(3, 64, 8, stride = 8, bias = False)
         self.conv01b = nn.Conv2d(3, 64, 8, stride = 8, bias = False)
-        W = kernelDCT2d2()
+        W = kernelDCT2d()
         self.conv01r.weight = nn.Parameter(torch.Tensor(np.copy(W)), requires_grad=False)
         self.conv01g.weight = nn.Parameter(torch.Tensor(np.copy(W)), requires_grad=False)
         self.conv01b.weight = nn.Parameter(torch.Tensor(np.copy(W)), requires_grad=False)
@@ -187,7 +187,7 @@ class DCTnet2v2(nn.Module):
         Xr = self.conv01r(Xr)
         Xg = self.conv01g(Xg)
         Xb = self.conv01b(Xb)
-        X = torch.cat([Xr, Xg, Xb], dim=1)
+        X = torch.cat((Xr, Xg, Xb), dim=1)
         print('### (2) X.shape =', X.shape)
 
         X = F.relu(self.conv02a(X))
