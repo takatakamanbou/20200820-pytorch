@@ -37,11 +37,11 @@ if __name__ == '__main__':
 
     # loading VGG11-bn pretrained model
     #vgg16 = torchvision.models.vgg16(pretrained=False)
-    vgg16 = DCTnet.DCTnet2()
+    vgg16 = DCTnet.DCTnet2v2()
     print(vgg16)
 
     # loading the parameters
-    fnParam_prev = f'data/ex20201228b_trainDCT2_epoch{epoch_prev:03d}.pth'
+    fnParam_prev = f'data/ex20210103_trainDCT2v2_epoch{epoch_prev:03d}.pth'
     if epoch_prev != 0:
         with open(fnParam_prev, mode='rb') as f:
             vgg16.load_state_dict(torch.load(f))
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         print()
         sys.stdout.flush()
 
-        fnParam_now = f'data/ex20201228b_trainDCT2_epoch{epoch_now:03d}.pth'
+        fnParam_now = f'data/ex20210103_trainDCT2v2_epoch{epoch_now:03d}.pth'
         if os.path.exists(fnParam_now):
             print(f'{fnParam_now} exists!')
             sys.stdout.flush()
