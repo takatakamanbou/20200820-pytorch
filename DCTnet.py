@@ -183,27 +183,24 @@ class DCTnet2v2(nn.Module):
     def forward(self, X):
 
         Xr, Xg, Xb = torch.split(X, 1, dim=1)
-        #print('### (0) XX.shape =', XX[0].shape)
-        #print('### (1) X.shape =', X.shape, X.shape[2:])
-        #print('### Xr.shape =', Xr.shape)
         Xr = self.conv01r(Xr)
         Xg = self.conv01g(Xg)
         Xb = self.conv01b(Xb)
         X = torch.cat((Xr, Xg, Xb), dim=1).contiguous()
-        print('### (01) X.shape =', X.shape)
+        #print('### (01) X.shape =', X.shape)
 
         X = F.relu(self.conv02a(X))
         X = F.relu(self.conv02b(X))
         X = self.pool1(X)
-        print('### (02) X.shape =', X.shape)
+        #print('### (02) X.shape =', X.shape)
 
         X = F.relu(self.conv03a(X))
         X = F.relu(self.conv03b(X))
         #X = self.pool2(X)
-        print('### (03) X.shape =', X.shape)
+        #print('### (03) X.shape =', X.shape)
 
         #X = self.avepool1(X)
-        print('### (avepool) X.shape =', X.shape)
+        #print('### (avepool) X.shape =', X.shape)
 
         #X = X.view(-1, 512*7*7)
         #X = X.reshape(-1, 512*7*7)
