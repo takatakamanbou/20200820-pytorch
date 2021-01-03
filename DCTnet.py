@@ -181,14 +181,14 @@ class DCTnet2v2(nn.Module):
     def forward(self, X):
 
         print('### (1) X.shape =', X.shape)
-        Xr = X[:, :, 0]
+        Xr = X[:, 0, ::]
         print('### Xr.shape =', Xr.shape)
         Xr = self.conv01r(Xr)
-        Xg = X[:, :, 1]
+        Xg = X[:, 1, ::]
         Xg = self.conv01g(Xg)
-        Xb = X[:, :, 2]
+        Xb = X[:, 2, ::]
         Xb = self.conv01b(Xb)
-        X = torch.cat([Xr, Xg, Xb], dim=2)
+        X = torch.cat([Xr, Xg, Xb], dim=1)
         print('### (2) X.shape =', X.shape)
 
         X = F.relu(self.conv02a(X))
