@@ -180,7 +180,7 @@ class DCTnet2v2(nn.Module):
     
     def forward(self, X):
 
-        print('### (1) X.shape =', X.shape)
+        print('### (1) X.shape =', X.shape, X.shape[2:])
         Xr = X[:, 0, ::]
         print('### Xr.shape =', Xr.shape)
         Xr = self.conv01r(Xr)
