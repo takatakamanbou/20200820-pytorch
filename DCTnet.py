@@ -180,15 +180,12 @@ class DCTnet2v2(nn.Module):
     
     def forward(self, X):
 
-        XX = torch.split(X, 1, dim=1)
-        print('### (0) XX.shape =', XX[0].shape)
-        print('### (1) X.shape =', X.shape, X.shape[2:])
-        Xr = X[:, 0, ::].reshape(X.shape[0])
+        Xr, Xg, Xb = torch.split(X, 1, dim=1)
+        #print('### (0) XX.shape =', XX[0].shape)
+        #print('### (1) X.shape =', X.shape, X.shape[2:])
         print('### Xr.shape =', Xr.shape)
         Xr = self.conv01r(Xr)
-        Xg = X[:, 1, ::]
         Xg = self.conv01g(Xg)
-        Xb = X[:, 2, ::]
         Xb = self.conv01b(Xb)
         X = torch.cat([Xr, Xg, Xb], dim=1)
         print('### (2) X.shape =', X.shape)
