@@ -182,10 +182,14 @@ class DCTnet2v2(nn.Module):
     
     def forward(self, X):
 
+        # splitting color images in three
         Xr, Xg, Xb = torch.split(X, 1, dim=1)
+
         Xr = self.conv01r(Xr)
         Xg = self.conv01g(Xg)
         Xb = self.conv01b(Xb)
+
+        # concatenating these three outputs with memory allignment
         X = torch.cat((Xr, Xg, Xb), dim=1).contiguous()
         #print('### (01) X.shape =', X.shape)
 
