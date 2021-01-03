@@ -166,12 +166,13 @@ class DCTnet2v2(nn.Module):
 
         self.conv03a = nn.Conv2d(256, 512, 3)
         self.conv03b = nn.Conv2d(512, 512, 3)
-        self.pool2 = nn.MaxPool2d(2, 2)
+        #self.pool2 = nn.MaxPool2d(2, 2)
         # (7, 7, 512)
 
-        self.avepool1 = nn.AdaptiveAvgPool2d((7, 7))
+        #self.avepool1 = nn.AdaptiveAvgPool2d((7, 7))
 
-        self.fc1 = nn.Linear(512 * 7 * 7, 4096)
+        #self.fc1 = nn.Linear(512 * 7 * 7, 4096)
+        self.fc1 = nn.Linear(512 * 6 * 6, 4096)
         self.fc2 = nn.Linear(4096, 4096)
         self.fc3 = nn.Linear(4096, 1000)
 
