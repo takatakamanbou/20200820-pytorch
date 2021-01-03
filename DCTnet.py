@@ -192,7 +192,9 @@ class DCTnet2v2(nn.Module):
         print('### (01) X.shape =', X.shape)
 
         X = F.relu(self.conv02a(X))
+        print('### (02) X.shape =', X.shape)
         X = F.relu(self.conv02b(X))
+        print('### (02) X.shape =', X.shape)
         X = self.pool1(X)
         print('### (02) X.shape =', X.shape)
 
